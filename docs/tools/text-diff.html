@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Diff - My AI Tools</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 1.5rem;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    .nav { margin-bottom: 1.5rem; }
+    .nav a { color: #38bdf8; text-decoration: none; font-size: 0.95rem; }
+    h1 { font-size: 1.8rem; margin-bottom: 1rem; color: #38bdf8; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-family: monospace;
+      padding: 0.75rem;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    .controls {
+      margin: 1rem 0;
+      display: flex;
+      gap: 0.5rem;
+    }
+    button {
+      background: #38bdf8;
+      border: none;
+      color: #0f172a;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #0ea5e9; }
+    #diffResult {
+      margin-top: 1.5rem;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      min-height: 100px;
+    }
+    .line-added { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+    .line-removed { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+  </style>
+</head>
+<body>
+  <div class="nav"><a href="../index.html">&larr; 대시보드로 돌아가기</a></div>
+  <h1>Text Diff Checker</h1>
+
+  <div class="grid">
+    <div>
+      <label>원본 텍스트 (Original):</label>
+      <textarea id="textA" placeholder="비교할 원본 텍스트를 입력하세요..."></textarea>
+    </div>
+    <div>
+      <label>수정된 텍스트 (Modified):</label>
+      <textarea id="textB" placeholder="수정된 텍스트를 입력하세요..."></textarea>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="compareLines()">라인 단위 비교</button>
+  </div>
+
+  <h3>비교 결과</h3>
+  <div id="diffResult">결과가 여기에 표시됩니다.</div>
+
+  <script>
+    function compareLines() {
+      const aLines = document.getElementById('textA').value.split('\n');
+      const bLines = document.getElementById('textB').value.split('\n');
+      const resultDiv = document.getElementById('diffResult');
+      resultDiv.innerHTML = '';
+
+      const maxLen = Math.max(aLines.length, bLines.length);
+      for (let i = 0; i < maxLen; i++) {
+        const lineA = aLines[i];
+        const lineB = bLines[i];
+
+        if (lineA === lineB) {
+          resultDiv.innerHTML += `<div>  ${escapeHtml(lineA ?? '')}</div>`;
+        } else {
+          if (lineA !== undefined) {
+            resultDiv.innerHTML += `<div class="line-removed">- ${escapeHtml(lineA)}</div>`;
+          }
+          if (lineB !== undefined) {
+            resultDiv.innerHTML += `<div class="line-added">+ ${escapeHtml(lineB)}</div>`;
+          }
+        }
+      }
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+  </script>
+</body>
+</html>

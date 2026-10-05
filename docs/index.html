@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My AI Tools Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    h1 { font-size: 2.2rem; color: var(--accent); margin-bottom: 0.5rem; }
+    p.subtitle { color: var(--text-muted); font-size: 1.1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .card h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .card a {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .card a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛠️ My AI Tools Dashboard</h1>
+      <p class="subtitle">AI 생산성 향상을 위한 유틸리티 웹 도구 및 프롬프트 라이브러리</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>웹 유틸리티 도구</h2>
+        <div class="grid">
+          <div class="card">
+            <h2>JSON Formatter</h2>
+            <p>JSON 문자열 포맷팅, 검증 및 압축 도구입니다.</p>
+            <a href="tools/json-formatter.html">도구 열기 &rarr;</a>
+          </div>
+          <div class="card">
+            <h2>Text Diff Checker</h2>
+            <p>두 텍스트 또는 코드 간의 차이점을 한눈에 비교합니다.</p>
+            <a href="tools/text-diff.html">도구 열기 &rarr;</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2026 My AI Tools. Built with care.
+    </footer>
+  </div>
+</body>
+</html>
